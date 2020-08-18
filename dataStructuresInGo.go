@@ -8,7 +8,7 @@ func main() {
 	// Here is how you can declare and use arrays in Go.
 	// Keep in mind that the length of an array is part of its type!
     var x [5]int
-	fmt.Printf("array: %v]\n", x)
+	fmt.Printf("array: %v]\tlength: %v\tcapacity: %v\n", x, len(x), cap(x))
 	x[3] = 42
 	fmt.Printf("after assignment: %v\n", x)
 	fmt.Printf("length: %v\n", len(x))
@@ -17,7 +17,7 @@ func main() {
 	// Here is a definition of a composite literal, which create an instance of an expresion each time it is evaluated.
 	// Composite literals are used to construct values for arrays, slices, maps, and structs.
 	y := []int{4, 5, 6, 7, 8, 42}
-	fmt.Printf("slice: %v\n", y)
+	fmt.Printf("slice: %v\tlength: %v\tcapacity: %v\n", y, len(y), cap(y))
 	fmt.Printf("length: %v\n", len(y))
 	fmt.Println(y[0])
 	fmt.Println(y[1])
@@ -39,8 +39,12 @@ func main() {
 	}
 
 	// Now let's append a some values to our slice
+	y = append(y, 55)
+	
+	// Notice how the capacity of the underlying array doubles when using append.
+	fmt.Printf("slice: %v\tlength: %v\tcapacity: %v\n", y, len(y), cap(y))
+	
 	y = append(y, 77, 88, 99, 1014)
-	fmt.Println(y)
 
 	z := []int{ 234, 456, 678 }
 	fmt.Println(append(y, z...))
@@ -49,4 +53,15 @@ func main() {
 	y = append(y[0:3], y[5:]...)
 	fmt.Println(y)
 
+	// If you know the ultimate size (capacity) of your slice you can use the make built in function to create the underlying array.
+	a := make ([]int, 10, 100)
+	fmt.Printf("slice: %v\tlength: %v\tcapacity: %v\n", a, len(a), cap(a))
+
+	// Multidimensional slices
+	b := []string{"James", "Bond", "Chocolate", "Martini"}
+	fmt.Println(b)
+	c := []string{"Miss", "Moneypenny", "Strawberry", "Hazelnut"}
+	fmt.Println(c)
+	d := [][]string{b, c}
+	fmt.Println(d)
 }
