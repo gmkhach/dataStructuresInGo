@@ -64,4 +64,30 @@ func main() {
 	fmt.Println(c)
 	d := [][]string{b, c}
 	fmt.Println(d)
+
+	// Maps are unordere, key-value lists
+	m := map[string]int{
+		"James": 32,
+		"Miss Moneypenny": 27,
+	}
+	fmt.Println(m)
+	fmt.Printf("James is %v years old\n", m["James"])
+
+	// If you try to access a map through a key which doesn't exist the value returned will always be the zero value of the value type
+	fmt.Println(m["Gabriel"])
+
+	// to checkif there exists an entry for any key in a map use the "comma ok" idiom
+	v, ok := m["Gabriel"]
+	fmt.Printf("value: %v\tok: %v\n", v, ok)
+
+	// This type of checks can be used in a conditional logic like this
+	if v, ok := m["Miss Moneypenny"]; ok {
+		fmt.Printf("THIS IS THE IF PRINT\nvalue: %v\tok: %v\n", v, ok)
+	}
+
+	// Adding another key-value pair to a map
+	m["Gabriel"] = 32
+	for k, v := range m{
+		fmt.Printf("key: %v\tvalue: %v\n", k, v)
+	}
 }
