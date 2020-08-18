@@ -87,7 +87,20 @@ func main() {
 
 	// Adding another key-value pair to a map
 	m["Gabriel"] = 32
+
 	for k, v := range m{
 		fmt.Printf("key: %v\tvalue: %v\n", k, v)
 	}
+
+	// Deleting an entry from a map
+	delete(m, "Miss Moneypenny")
+	
+	fmt.Println(m["Miss Moneypenny"])
+	
+	for k, v := range m{
+		fmt.Printf("key: %v\tvalue: %v\n", k, v)
+	}
+
+	// It should also be montioned that you can delete an entry that doesn't exist without run into errors
+	delete(m, "Ian Fleming")
 }
